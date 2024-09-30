@@ -12,7 +12,7 @@
             <div id="message" class="message"></div>
             <ul id="task-list"></ul>
             <form method="POST" class="input_form" onsubmit="return addTask()">
-                <input type="text" name="task" id="task-input" class="task_input form-control" placeholder="Enter the task">
+                <input type="text" name="task" id="task-input" class="task_input form-control" placeholder="Enter the task" oninput="validateTaskInput()">
                 <button type="submit" name="submit" id="add_btn" class="add_btn">Add Task</button>
                 <button type="button" name="delete" id="delete_btn" class="delete_btn" onclick="deleteTask()" disabled>Delete Task</button>
             </form>
@@ -79,6 +79,19 @@
             const taskList = document.getElementById('task-list');
             const deleteButton = document.getElementById('delete_btn');
             deleteButton.disabled = taskList.children.length === 0;
+        }
+
+        function validateTaskInput() {
+            const taskInput = document.getElementById('task-input');
+            const task = taskInput.value.trim();
+            if (task.length > 50) {
+                showMessage('Task cannot be more than 50 characters');
+            } else if (!task) {
+                showMessage('Task cannot be empty');
+            } else {
+                const messageDiv = document.getElementById('message');
+                messageDiv.style.display = 'none';
+            }
         }
 
         // Initial check
