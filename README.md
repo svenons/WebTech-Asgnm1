@@ -1,4 +1,3 @@
-# WebTech-Asgnm1
 # User-Friendly To-Do List with HTML, CSS, and JavaScript
 
 Create a dynamic To-Do List application using HTML, CSS, and JavaScript. This application will allow users to add and remove tasks, validate input, and provide feedback on user actions.
@@ -27,11 +26,9 @@ Create a dynamic To-Do List application using HTML, CSS, and JavaScript. This ap
 #### Real-Time Validation:
 - Implement input validation that checks the task input on each keypress and provides immediate feedback to the user.
 
-## Implementation and submission
+## Implementation
 
 You are required to create a dynamic To-Do List application using HTML, CSS, and JavaScript. Ensure that you use semantic HTML to enhance the accessibility and structure of your application.
-
-Once you have completed the assignment, please package all your files into a single ZIP folder, including all the necessary HTML, CSS, and JavaScript files, and upload it for submission.
 
 ### HTML Structure
 - Use appropriate semantic HTML elements to structure the application.
@@ -44,5 +41,3 @@ Once you have completed the assignment, please package all your files into a sin
 ### JavaScript Functionality
 - Use JavaScript to implement the dynamic functionality of the To-Do List.
 - Handle the logic for adding and removing tasks, validating input, and providing feedback.
-
-Here is example of To-do-list:
