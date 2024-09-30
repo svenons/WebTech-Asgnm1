@@ -1,0 +1,21 @@
+<html>
+<head>
+    <title>Dynamic To-Do List</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="heading">
+        <h2>Dynamic To-Do List</h2>
+    </div>
+    <div class="content">
+        <ul id="task-list"></ul>
+        </ul>
+        <form method="POST" class="input_form" onsubmit="return addTask()">
+            <input type="text" name="task" id="task-input" class="task_input form-control" placeholder="Enter the task">
+            <button type="submit" name="submit" id="add_btn" class="add_btn">Add Task</button>
+            <button type="button" name="delete" id="delete_btn" class="delete_btn" onclick="deleteTask()">Delete Task</button>
+        </form>
+    </div>
+
+</body>
+</html>
