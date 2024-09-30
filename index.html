@@ -4,18 +4,85 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <div class="heading">
+    <header class="heading">
         <h2>Dynamic To-Do List</h2>
-    </div>
-    <div class="content">
-        <ul id="task-list"></ul>
-        </ul>
-        <form method="POST" class="input_form" onsubmit="return addTask()">
-            <input type="text" name="task" id="task-input" class="task_input form-control" placeholder="Enter the task">
-            <button type="submit" name="submit" id="add_btn" class="add_btn">Add Task</button>
-            <button type="button" name="delete" id="delete_btn" class="delete_btn" onclick="deleteTask()">Delete Task</button>
-        </form>
-    </div>
+    </header>
+    <main class="content">
+        <section>
+            <div id="message" class="message"></div>
+            <ul id="task-list"></ul>
+            <form method="POST" class="input_form" onsubmit="return addTask()">
+                <input type="text" name="task" id="task-input" class="task_input form-control" placeholder="Enter the task">
+                <button type="submit" name="submit" id="add_btn" class="add_btn">Add Task</button>
+                <button type="button" name="delete" id="delete_btn" class="delete_btn" onclick="deleteTask()" disabled>Delete Task</button>
+            </form>
+        </section>
+    </main>
+    <script>
+        let messageTimeout;
 
+        function showMessage(message) {
+            const messageDiv = document.getElementById('message');
+            messageDiv.textContent = message;
+            messageDiv.style.display = 'block';
+            if (messageTimeout) {
+                clearTimeout(messageTimeout);
+            }
+            messageTimeout = setTimeout(() => {
+                messageDiv.style.display = 'none';
+            }, 5000);
+        }
+
+        function addTask() {
+            const taskInput = document.getElementById('task-input');
+            const taskList = document.getElementById('task-list');
+            const task = taskInput.value.trim();
+
+            if (task.length > 50) {
+                showMessage('Task cannot be more than 50 characters');
+                return false;
+            }
+            
+            if (task) {
+                const li = document.createElement('li');
+                li.textContent = task;
+                taskList.appendChild(li);
+                taskInput.value = '';
+            } else {
+                showMessage('Task cannot be empty');
+                return false;
+            }
+
+            updateButtonState();
+            showMessage('Task added successfully');
+            if (taskList.children.length >= 20) {
+                showMessage('You have reached the maximum of 20 tasks');
+                document.getElementById('add_btn').disabled = true;
+                return false;
+            }
+            return false;
+        }
+
+        function deleteTask() {
+            const taskList = document.getElementById('task-list');
+            if (taskList.lastChild) {
+                taskList.removeChild(taskList.lastChild);
+                updateButtonState();
+            }
+            if (taskList.children.length < 20) {
+                document.getElementById('add_btn').disabled = false;
+            }
+            showMessage('Task removed successfully');
+        }
+
+        function updateButtonState() {
+            const taskList = document.getElementById('task-list');
+            const deleteButton = document.getElementById('delete_btn');
+            deleteButton.disabled = taskList.children.length === 0;
+        }
+
+        // Initial check
+        updateButtonState();
+    </script>
 </body>
 </html>
